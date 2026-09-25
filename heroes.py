@@ -50,7 +50,9 @@ class Hero:
 
 
 class Knight(Hero):
-
+    """
+    Класс рыцаря, наследуемый базовыйм классом Hero
+    """
     def __init__(self, name):
         super().__init__(name)
 
@@ -58,7 +60,3 @@ class Knight(Hero):
         return (f'{self.name} - {self.get_lvl()} lvl\n'
                 f'{self.get_hp()}hp/{self.get_mana()}mp\n'
                 f'{self.get_exp()} exp')
-
-
-some_knight = Knight('Dick')
-print(some_knight)
