@@ -1,3 +1,6 @@
+from backpack import Backpack
+
+
 class Hero:
     """
     Базовый класс героя
@@ -20,6 +23,7 @@ class Hero:
     base_dmg = 5
     base_def = 5
     base_mana = 10
+    pers_backpack = Backpack(storage=dict())
 
     def __init__(self, name):
         self.name = name
@@ -47,6 +51,12 @@ class Hero:
 
     def get_mana(self):
         return self.__mana
+
+    def put_in_backpack(self, item, amount=1):
+        self.pers_backpack.add_stuff({item: amount})
+
+    def open_backpack(self):
+        self.pers_backpack.show_storage()
 
 
 class Knight(Hero):

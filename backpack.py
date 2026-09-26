@@ -1,10 +1,17 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class Backpack:
-    item_name: str
-    item_amount: int
+    storage: dict
 
+    def add_stuff(self, dct):
+        for key, value in dct.items():
+            if key not in self.storage:
+                self.storage.update(dct)
+            else:
+                self.storage[key] += value
 
-bckpck = Backpack(item_name='someshit', item_amount=12)
-print(bckpck.item_name, bckpck.item_amount)
+    def show_storage(self):
+        print('Items in backpack:')
+        print(*{f'\n    {key}: {value}' for key, value in self.storage.items()})
