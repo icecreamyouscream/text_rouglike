@@ -61,18 +61,15 @@ class Hero:
     def get_from_backpack(self, item, amount=1):
         if item in self.storage:
             self.storage[item] -= amount
-        while True:
-            if self.storage[item] < 0:
-                print(f'Невозможно взять столько {item}.')
-                self.storage[item] += amount
-                break
-            elif self.storage[item] == 0:
-                del self.storage[item]
-                print(f'Получено {amount} {item}. В рюкзаке больше нет {item}.')
-                break
-            else:
-                print(f'Получено {amount} {item}. В рюкзаке осталось {self.storage[item]} {item}.')
-                break
+        if self.storage[item] < 0:
+            print(f'Невозможно взять столько {item}.')
+            self.storage[item] += amount
+        elif self.storage[item] == 0:
+            del self.storage[item]
+            print(f'Получено {amount} {item}. В рюкзаке больше нет {item}.')
+        else:
+            print(f'Получено {amount} {item}. В рюкзаке осталось {self.storage[item]} {item}.')
+
 
     def open_backpack(self):
         print("Backpack's content:")
