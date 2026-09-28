@@ -23,7 +23,7 @@ class Hero:
     base_dmg = 5
     base_def = 5
     base_mana = 10
-    pers_backpack = Backpack(storage=dict())
+    storage = Backpack()
 
     def __init__(self, name):
         self.name = name
@@ -53,10 +53,31 @@ class Hero:
         return self.__mana
 
     def put_in_backpack(self, item, amount=1):
-        self.pers_backpack.add_stuff({item: amount})
+        if item in self.storage:
+            self.storage[item] += amount
+        else:
+            self.storage.setdefault(item, amount)
+
+    def get_from_backpack(self, item, amount=1):
+        if item in self.storage:
+            self.storage[item] -= amount
+        while True:
+            if self.storage[item] < 0:
+                print(f'Невозможно взять столько {item}.')
+                self.storage[item] += amount
+                break
+            elif self.storage[item] == 0:
+                del self.storage[item]
+                print(f'Получено {amount} {item}. В рюкзаке больше нет {item}.')
+                break
+            else:
+                print(f'Получено {amount} {item}. В рюкзаке осталось {self.storage[item]} {item}.')
+                break
 
     def open_backpack(self):
-        self.pers_backpack.show_storage()
+        print("Backpack's content:")
+        for key, value in self.storage.items():
+            print(f'    {key}: {value}')
 
 
 class Knight(Hero):
