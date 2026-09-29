@@ -1,7 +1,6 @@
 from typing import NoReturn
 from backpack import Backpack
 
-
 class Hero:
     """
     Базовый класс героя
