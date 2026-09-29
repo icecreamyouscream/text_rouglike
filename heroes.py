@@ -1,4 +1,4 @@
-from typing import Any
+from typing import NoReturn
 from backpack import Backpack
 
 
@@ -24,9 +24,14 @@ class Hero:
     base_dmg: int = 5
     base_def: int = 5
     base_mana: int = 10
-    storage: dict = Backpack()
+    storage: Backpack = Backpack()
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
+        """
+        Метод инициализации класса
+        Args:
+            name(str): имя героя
+        """
         self.name: str = name
         self.__lvl: int = self.start_lvl
         self.__exp: int = self.start_exp
@@ -36,31 +41,72 @@ class Hero:
         self.__mana: int = self.base_mana
 
     def get_lvl(self) -> int:
+        """
+        Геттер для получения показателя уровня
+        Returns: __lvl
+        """
         return self.__lvl
 
     def get_exp(self) -> int:
+        """
+        Геттер для получения показателя очков опыта
+        Returns: __exp
+        """
         return self.__exp
 
     def get_hp(self) -> int:
+        """
+        Геттер для получения показателя очков здоровья
+        Returns: __hp
+        """
         return self.__hp
 
     def get_dmg(self) -> int:
+        """
+        Геттер для получения показателя урона
+        Returns: __dmg
+        """
         return self.__dmg
 
     def get_def(self) -> int:
+        """
+        Геттер для получения показателя защиты
+        Returns: __def
+        """
         return self.__def
 
     def get_mana(self) -> int:
+        """
+        Геттер для получения показателя очков маны
+        Returns: __mp
+        """
         return self.__mana
 
-    def put_in_backpack(self, item, amount=1) -> dict:
+    def put_in_backpack(self, item, amount=1) -> NoReturn:
+        """
+        Метод добавления предмета и его количества в рюкзак
+        Args:
+            item(str): наименование предмета
+            amount(int): количество предметов
+
+        Returns: None
+        """
         if item in self.storage:
             self.storage[item] += amount
         else:
             self.storage.setdefault(item, amount)
-        return self.storage
 
-    def get_from_backpack(self, item, amount=1) -> tuple:
+    def get_from_backpack(self, item, amount=1) -> tuple[str, int]:
+        """
+        Метод изъятия предмета и его количества из рюкзака
+        Args:
+            item(str): Наименование предмета
+            amount(int): Количество предметов
+
+        Returns:
+            Кортеж, содержащий наименование и количество предметов
+            tuple[str, int]
+        """
         if item in self.storage:
             self.storage[item] -= amount
         if self.storage[item] < 0:
@@ -74,21 +120,33 @@ class Hero:
         return item, amount
 
 
-    def open_backpack(self) -> dict:
-        print("Backpack's content:")
+    def open_backpack(self) -> NoReturn:
+        """
+        Метод просмотра содержимого рюкзака
+        Returns: None
+        """
+        print("Содержимое рюкзака:")
         for key, value in self.storage.items():
             print(f'    {key}: {value}')
-        return self.storage
 
 
 class Knight(Hero):
     """
-    Класс рыцаря, наследуемый базовыйм классом Hero
+    Класс рыцарь. Родитель Hero.
     """
-    def __init__(self, name) -> None:
+    def __init__(self, name: str) -> None:
+        """
+        Метод инициализации класса
+        Args:
+            name(str): Имя рыцаря
+        """
         super().__init__(name)
 
     def __str__(self) -> str:
+        """
+        Метод возврата строкового представления объекта (Рыцарь)
+        Returns: str
+        """
         return (f'{self.name} - {self.get_lvl()} lvl\n'
                 f'{self.get_hp()}hp/{self.get_mana()}mp\n'
                 f'{self.get_exp()} exp')
