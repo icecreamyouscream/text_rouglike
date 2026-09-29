@@ -1,7 +1,7 @@
 from typing import Any
 from backpack import Backpack
 
-
+# TODO test
 class Hero:
     """
     Базовый класс героя
