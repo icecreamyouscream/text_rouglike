@@ -2,6 +2,10 @@ from typing import NoReturn
 from backpack import Backpack
 
 class Hero:
+    # TODO Первая строчка докстринги пишется сразу после кавычек.
+    # потом входные параметры через :param kek: это свойство кекает
+    # потом выход :return: возвращается лол
+
     """
     Базовый класс героя
 
@@ -17,6 +21,7 @@ class Hero:
         base_mana(int): стартовый показатель маны
     """
 
+    # TODO давай создадим config.py куда вынесем переменные статов
     start_lvl: int = 1
     start_exp: int = 0
     base_hp: int = 100
@@ -95,7 +100,14 @@ class Hero:
         else:
             self.storage.setdefault(item, amount)
 
-    def get_from_backpack(self, item, amount=1) -> tuple[str, int]:
+    def get_from_backpack(self, item, amount=1) -> tuple[str, int]: # TODO пересмотри задачу, что мы ждем, представь, что мы храним не строки и инты, а какие-то более понятные объекты (*которые мы еще не создали, но создадим)
+        # TODO ожидаю докстринги следующего вида
+        """
+
+        :param item:
+        :param amount:
+        :return:
+        """
         """
         Метод изъятия предмета и его количества из рюкзака
         Args:
@@ -120,6 +132,7 @@ class Hero:
 
 
     def open_backpack(self) -> NoReturn:
+        # TODO что за NoReturn?)
         """
         Метод просмотра содержимого рюкзака
         Returns: None
