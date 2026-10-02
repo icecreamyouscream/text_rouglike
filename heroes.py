@@ -4,7 +4,7 @@ from backpack import Backpack
 class Hero:
     """Базовый класс героя
 
-    Attributes:
+    Attributes: # todo излишне
         storage (Backpack): рюкзак для хранения предметов и расходников"""
 
     storage: Backpack = Backpack()
@@ -52,11 +52,14 @@ class Hero:
         :return: __mana"""
         return self.__mana
 
-    def put_in_backpack(self, item, amount: int=1) -> None:
+    def put_in_backpack(self, item, amount: int=1) -> None: # todo аннотация итема
+        # про эмаунт - убери его, загляни еще раз в задачку, как мы будем вести наш рюкзак
+        # upd: нашел у тебя к тому же готовый класс Equip - в качестве небольшого задания добавь в мейне новый предмет
+        # пусть это будет Меч в наш рюкзак (представь, что наш Член шел и нашел меч, он его закинул в рюкзак)
         """Метод добавления предмета и его количества в рюкзак
 
         :param item: Объект предмета
-        :type item: object
+        :type item: object # todo типы договорились не описывать, нигде не видел, чтобы так делали, аннотации достаточно
         :param amount: Количество предметов
         :type amount: int
 
@@ -67,7 +70,8 @@ class Hero:
         else:
             self.storage.setdefault(item, amount)
 
-    def get_from_backpack(self, item, amount: int=1) -> tuple[object, int]:
+    def get_from_backpack(self, item, amount: int=1) -> tuple[object, int]: # todo нет аннотации для итема
+        # сразу скажу, что если судить по аннотации возвращаемого значения, то ты не прав, подумай еще
         """Метод изъятия предмета и его количества из рюкзака
 
         :param item: Объект предмета
@@ -91,7 +95,8 @@ class Hero:
 
 
     def open_backpack(self) -> None:
-        """Метод просмотра содержимого рюкзака
+        """Метод просмотра содержимого рюкзака # todo первая строчка в докстринге обычно заканчивается точкой
+        # а потом идет пустая строка
         :return: None"""
         print("Содержимое рюкзака:")
         for key, value in self.storage.items():
