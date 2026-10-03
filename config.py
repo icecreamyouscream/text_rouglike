@@ -1,8 +1,8 @@
-"""Базовые характеристики героя"""
+"""Базовые характеристики героя. """
 
-start_lvl: int = 1 # todo https://code-basics.com/ru/languages/python/lessons/constants почитай про константы и внеси сюда првки
-start_exp: int = 0
-base_hp: int = 100
-base_dmg: int = 5
-base_def: int = 5
-base_mana: int = 10
+START_LVL: int = 1
+START_EXP: int = 0
+BASE_HP: int = 100
+BASE_DMG: int = 5
+BASE_DEF: int = 5
+BASE_MANA: int = 10

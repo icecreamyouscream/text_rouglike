@@ -12,12 +12,12 @@ class Hero:
         :param name: Имя героя"""
 
         self.name: str = name
-        self.__lvl: int = config.start_lvl
-        self.__exp: int = config.start_exp
-        self.__hp: int= config.base_hp
-        self.__dmg: int = config.base_dmg
-        self.__def: int = config.base_def
-        self.__mana: int = config.base_mana
+        self.__lvl: int = config.START_LVL
+        self.__exp: int = config.START_EXP
+        self.__hp: int= config.BASE_HP
+        self.__dmg: int = config.BASE_DMG
+        self.__def: int = config.BASE_DEF
+        self.__mana: int = config.BASE_MANA
 
     def get_lvl(self) -> int:
         """Геттер для получения показателя уровня.
