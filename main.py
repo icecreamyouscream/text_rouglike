@@ -16,3 +16,5 @@ if __name__ == '__main__':
     some_knight.open_backpack()
     some_knight.get_from_backpack(sword)
     some_knight.open_backpack()
+
+    # уже выглядит поинтереснее))) Добиваем тудушки и идем дальше)

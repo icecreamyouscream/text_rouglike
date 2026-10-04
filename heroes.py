@@ -49,8 +49,10 @@ class Hero:
         :return: __mana"""
         return self.__mana
 
-    def put_in_backpack(self, name: str, item: Equip) -> None:
-        """Метод добавления предмета и его количества в рюкзак.
+    def put_in_backpack(self, name: str, item: Equip) -> None: # todo давай уберем имя, пусть  мы кладем исключительно итем
+        # ключом как раз будет имя итема
+
+        """Метод добавления предмета и его количества в рюкзак. # todo изменился смысл поменяй стрингу
 
         :param name: Наименование предмета
         :param item: Объект предмета
@@ -62,7 +64,9 @@ class Hero:
         else:
             self.storage.setdefault(name, [item])
 
-    def get_from_backpack(self, item: Equip, amount: int=1) -> list[Equip]:
+    def get_from_backpack(self, item: Equip, amount: int=1) -> list[Equip]: # todo все еще существует эмаунт, надо его убрать целиком
+        # если ты хочешь выводить количество, то давай через лен(), то есть ключ - количество, эмаунт нам больше не нужен
+        # Тут есть небольшая задумка, реализую в качестве отдельной задачи в трелло, а пока эмаунт надо убрать
         """Метод изъятия предмета из рюкзака.
 
         :param item: Объект предмета
@@ -70,10 +74,10 @@ class Hero:
         :return: Список изъятых предметов"""
 
         taken_item = []
-        if str(item) in self.storage:
-            for key, value in self.storage.items():
-                if item in value:
-                    for i in range(amount):
+        if str(item) in self.storage: # todo должно стать item.name in self.storage
+            for key, value in self.storage.items(): # todo лишнее
+                if item in value: # todo тут ты буквально смотришь уже то что посмотрел раньше (пьяный Никита)
+                    for i in range(amount): # todo вот тут обсуждали, надо через поп(), если не получится обязательно пиши я посмотрю
                         taken_item.append(item)
                         del value[i]
         else:
@@ -90,7 +94,7 @@ class Hero:
 
 
 class Knight(Hero):
-    """Класс рыцаря. """
+    """Класс рыцаря. """ # todo лишний пробел перед точкой и не забудь пустые строки проставить после первой строки там где это надо
 
     def __init__(self, name: str) -> None:
         """Метод инициализации класса.
