@@ -70,11 +70,14 @@ class Hero:
         :return: Список изъятых предметов"""
 
         taken_item = []
-        for key, value in self.storage.items():
-            if item in value:
-                for i in range(amount):
-                    taken_item.append(item)
-                    del value[i]
+        if str(item) in self.storage:
+            for key, value in self.storage.items():
+                if item in value:
+                    for i in range(amount):
+                        taken_item.append(item)
+                        del value[i]
+        else:
+            print('В рюкзаке нет такого предмета.')
         return taken_item
 
     def open_backpack(self) -> None:
