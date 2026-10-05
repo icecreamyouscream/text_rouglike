@@ -9,6 +9,7 @@ class Hero:
 
     def __init__(self, name: str) -> None:
         """Метод инициализации класса.
+
         :param name: Имя героя"""
 
         self.name: str = name
@@ -21,88 +22,94 @@ class Hero:
 
     def get_lvl(self) -> int:
         """Геттер для получения показателя уровня.
+
         :return: __lvl"""
+
         return self.__lvl
 
     def get_exp(self) -> int:
         """Геттер для получения показателя очков опыта.
+
         :return: __exp"""
+
         return self.__exp
 
     def get_hp(self) -> int:
         """Геттер для получения показателя очков здоровья.
+
         :return: __hp"""
+
         return self.__hp
 
     def get_dmg(self) -> int:
         """Геттер для получения показателя урона.
+
         :return: __dmg"""
+
         return self.__dmg
 
     def get_def(self) -> int:
         """Геттер для получения показателя защиты.
+
         :return: __def"""
+
         return self.__def
 
     def get_mana(self) -> int:
         """Геттер для получения показателя очков маны.
+
         :return: __mana"""
+
         return self.__mana
 
-    def put_in_backpack(self, name: str, item: Equip) -> None: # todo давай уберем имя, пусть  мы кладем исключительно итем
-        # ключом как раз будет имя итема
+    def put_in_backpack(self, item: Equip) -> None:
+        """Метод добавления предмета в рюкзак.
 
-        """Метод добавления предмета и его количества в рюкзак. # todo изменился смысл поменяй стрингу
-
-        :param name: Наименование предмета
         :param item: Объект предмета
-
         :return: None"""
 
-        if name in self.storage.keys():
-            self.storage[name].append(item)
+        if str(item) in self.storage.keys():
+            self.storage[str(item)].append(item)
         else:
-            self.storage.setdefault(name, [item])
+            self.storage.setdefault(str(item), [item])
 
-    def get_from_backpack(self, item: Equip, amount: int=1) -> list[Equip]: # todo все еще существует эмаунт, надо его убрать целиком
-        # если ты хочешь выводить количество, то давай через лен(), то есть ключ - количество, эмаунт нам больше не нужен
-        # Тут есть небольшая задумка, реализую в качестве отдельной задачи в трелло, а пока эмаунт надо убрать
+    def get_from_backpack(self, item: Equip) -> list[Equip]:
         """Метод изъятия предмета из рюкзака.
 
         :param item: Объект предмета
-        :param amount: Количество предметов
         :return: Список изъятых предметов"""
 
         taken_item = []
-        if str(item) in self.storage: # todo должно стать item.name in self.storage
-            for key, value in self.storage.items(): # todo лишнее
-                if item in value: # todo тут ты буквально смотришь уже то что посмотрел раньше (пьяный Никита)
-                    for i in range(amount): # todo вот тут обсуждали, надо через поп(), если не получится обязательно пиши я посмотрю
-                        taken_item.append(item)
-                        del value[i]
+        if str(item) in self.storage.keys():
+            self.storage[str(item)].pop(self.storage[str(item)].index(item))
         else:
             print('В рюкзаке нет такого предмета.')
+
         return taken_item
 
     def open_backpack(self) -> None:
         """Метод просмотра содержимого рюкзака.
-        # а потом идет пустая строка
+
         :return: None"""
+
         print("Содержимое рюкзака:")
         for key, value in self.storage.items():
             print(f'    {key}: {value[0]} x {len(value)}')
 
 
 class Knight(Hero):
-    """Класс рыцаря. """ # todo лишний пробел перед точкой и не забудь пустые строки проставить после первой строки там где это надо
+    """Класс рыцаря."""
 
     def __init__(self, name: str) -> None:
         """Метод инициализации класса.
+
         :param name: Имя рыцаря"""
+
         super().__init__(name)
 
     def __str__(self) -> str:
         """Метод возврата строкового представления объекта (Рыцарь).
+
         :return: Строку, содержащую в себе информацию о рыцаре"""
 
         return (f'{self.name} - {self.get_lvl()} lvl\n'
