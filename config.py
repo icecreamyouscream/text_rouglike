@@ -1,8 +1,8 @@
 """Базовые характеристики героя. """
 
-START_LVL: int = 1
-START_EXP: int = 0
-BASE_HP: int = 100
-BASE_DMG: int = 5
-BASE_DEF: int = 5
-BASE_MANA: int = 10 #todo для констант можно не проставлять тип в этом собственно ключевая особенность, так как они статичны тип не изменяется
+START_LVL = 1
+START_EXP = 0
+BASE_HP = 100
+BASE_DMG = 5
+BASE_DEF = 5
+BASE_MANA = 10
