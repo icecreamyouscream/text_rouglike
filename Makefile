@@ -1,7 +1,7 @@
 .PHONY: lint format
 
 lint:
-	ruff check .
+	ruff check . --output-format=pylint
 	mypy .
 
 format:
