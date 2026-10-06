@@ -69,7 +69,8 @@ class Hero:
         :param item: Объект предмета
         :return: None"""
 
-        if str(item) in self.storage:
+        if str(item) in self.storage: # todo вот тут самое время почитать про моржовый оператор и использовать)
+            # реализуй для этого и след метода
             self.storage[str(item)].append(item)
         else:
             self.storage.setdefault(str(item), [item])
