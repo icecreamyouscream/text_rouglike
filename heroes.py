@@ -2,8 +2,9 @@ import config
 from equipment import Equip
 from backpack import Backpack
 
+
 class Hero:
-    """Базовый класс героя. """
+    """Базовый класс героя."""
 
     storage: Backpack = Backpack()
 
@@ -15,7 +16,7 @@ class Hero:
         self.name: str = name
         self.__lvl: int = config.START_LVL
         self.__exp: int = config.START_EXP
-        self.__hp: int= config.BASE_HP
+        self.__hp: int = config.BASE_HP
         self.__dmg: int = config.BASE_DMG
         self.__def: int = config.BASE_DEF
         self.__mana: int = config.BASE_MANA
@@ -68,7 +69,7 @@ class Hero:
         :param item: Объект предмета
         :return: None"""
 
-        if str(item) in self.storage.keys():
+        if str(item) in self.storage:
             self.storage[str(item)].append(item)
         else:
             self.storage.setdefault(str(item), [item])
@@ -80,10 +81,10 @@ class Hero:
         :return: Список изъятых предметов"""
 
         taken_item = []
-        if str(item) in self.storage.keys():
+        if str(item) in self.storage:
             self.storage[str(item)].pop(self.storage[str(item)].index(item))
         else:
-            print('В рюкзаке нет такого предмета.')
+            print("В рюкзаке нет такого предмета.")
 
         return taken_item
 
@@ -94,7 +95,7 @@ class Hero:
 
         print("Содержимое рюкзака:")
         for key, value in self.storage.items():
-            print(f'    {key}: {value[0]} x {len(value)}')
+            print(f"    {key}: {value[0]} x {len(value)}")
 
 
 class Knight(Hero):
@@ -112,6 +113,8 @@ class Knight(Hero):
 
         :return: Строку, содержащую в себе информацию о рыцаре"""
 
-        return (f'{self.name} - {self.get_lvl()} lvl\n'
-                f'{self.get_hp()}hp/{self.get_mana()}mp\n'
-                f'{self.get_exp()} exp')
+        return (
+            f"{self.name} - {self.get_lvl()} lvl\n"
+            f"{self.get_hp()}hp/{self.get_mana()}mp\n"
+            f"{self.get_exp()} exp"
+        )
