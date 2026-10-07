@@ -69,11 +69,10 @@ class Hero:
         :param item: Объект предмета
         :return: None"""
 
-        if str(item) in self.storage: # todo вот тут самое время почитать про моржовый оператор и использовать)
-            # реализуй для этого и след метода
-            self.storage[str(item)].append(item)
+        if (needed_item := str(item)) in self.storage:
+            self.storage[needed_item].append(item)
         else:
-            self.storage.setdefault(str(item), [item])
+            self.storage.setdefault(needed_item, [item])
 
     def get_from_backpack(self, item: Equip) -> list[Equip]:
         """Метод изъятия предмета из рюкзака.
@@ -82,8 +81,8 @@ class Hero:
         :return: Список изъятых предметов"""
 
         taken_item = []
-        if str(item) in self.storage:
-            self.storage[str(item)].pop(self.storage[str(item)].index(item))
+        if (needed_item := str(item)) in self.storage:
+            taken_item.append(self.storage[needed_item].pop(self.storage[needed_item].index(item)))
         else:
             print("В рюкзаке нет такого предмета.")
 
