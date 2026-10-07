@@ -84,7 +84,7 @@ class Hero:
         if (needed_item := str(item)) in self.storage:
             taken_item.append(self.storage[needed_item].pop(self.storage[needed_item].index(item)))
         else:
-            print("В рюкзаке нет такого предмета.") # todo а какого кстати?) замени такого на нечто более понятное, чтобы сразу понятно было
+            print(f"В рюкзаке нет предмета: {needed_item}.")
 
         return taken_item
 
