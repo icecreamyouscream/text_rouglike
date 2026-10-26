@@ -1,36 +1,32 @@
-class Equip:
-    """Общий класс предметов."""
+from abc import ABC, abstractmethod
+from enum import StrEnum
+from generator import IGeneratable
 
-    def __init__(self, name) -> None:
-        """Метод инициализации класса.
 
-        :param name: Наименование предмета"""
+class EquipType(StrEnum):
+    WEAPON = "Оружие"
+    ARMOR = "Броня"
+    COLLECTIBLE = "Расходники"
 
+class Equip(ABC):
+    """Абстрактный класс предметов."""
+
+    @abstractmethod
+    def __init__(self, name: str, item_type: str) -> None:
         self.name = name
+        self.item_type = item_type
 
-    def __repr__(self) -> str:
-        """Метод представления объекта.
-
-        :return: Строку, содержащую в себе наименование предмета"""
-
-        return self.name
 
 class Armor(Equip):
     """Класс брони."""
 
     def __init__(self, name: str) -> None:
-        """Метод инициализации класса.
 
-        :param name: Наименование брони"""
+        super().__init__(name=name, item_type=EquipType.ARMOR)
 
-        super().__init__(name)
-
-    def __repr__(self) -> str:
-        """Метод представления брони.
-
-        :return: Строку, содержащую в себе наименование брони"""
-
+    def __repr__(self):
         return self.name
+
 
 class Weapon(Equip):
     """Класс оружия"""
@@ -40,11 +36,32 @@ class Weapon(Equip):
         
         :param name: Наименование оружия"""
         
-        super().__init__(name)
+        self.name = name
 
-    def __repr__(self) -> str:
-        """Метод представления оружия.
-
-        :return: Строку, содержащую в себе наименование оружия"""
-
+    def __repr__(self):
         return self.name
+
+    def name(self) -> str:
+        return self.name
+
+
+class Collectible(Equip):
+    """Класс расходников"""
+
+    def __init__(self, name: str) -> None:
+        """Метод инициализации класса.
+
+        :param name: Наименование предмета."""
+
+        self.name = name
+
+    def __repr__(self):
+        return self.name
+
+    def name(self) -> str:
+        return self.name
+
+class EquipGenerator(IGeneratable):
+
+    def generate(self, name: str) -> Equip:
+        pass
