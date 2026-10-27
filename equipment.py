@@ -4,6 +4,8 @@ from generator import IGeneratable
 
 
 class EquipType(StrEnum):
+    """Класс типов предметов."""
+
     WEAPON = "Оружие"
     ARMOR = "Броня"
     COLLECTIBLE = "Расходники"
@@ -13,6 +15,11 @@ class Equip(ABC):
 
     @abstractmethod
     def __init__(self, name: str, item_type: str) -> None:
+        """Метод инициализации класса.
+
+        :param name: Наименование предмета.
+        :param item_type: Тип предмета."""
+
         self.name = name
         self.item_type = item_type
 
@@ -21,10 +28,16 @@ class Armor(Equip):
     """Класс брони."""
 
     def __init__(self, name: str) -> None:
+        """Метод инициализации класса.
+
+        :param name: Наименование брони."""
 
         super().__init__(name=name, item_type=EquipType.ARMOR)
 
     def __repr__(self):
+        """Класс репрезентации класса.
+
+        :return: Строковое наименование класса."""
         return self.name
 
 
@@ -36,12 +49,12 @@ class Weapon(Equip):
         
         :param name: Наименование оружия"""
         
-        self.name = name
+        super().__init__(name=name, item_type=EquipType.WEAPON)
 
     def __repr__(self):
-        return self.name
+        """Метод репрезентации класса.
 
-    def name(self) -> str:
+        :return: Строковое наименование класса."""
         return self.name
 
 
@@ -53,15 +66,17 @@ class Collectible(Equip):
 
         :param name: Наименование предмета."""
 
-        self.name = name
+        super().__init__(name=name, item_type=EquipType.COLLECTIBLE)
 
     def __repr__(self):
+        """Метод репрезентации класса.
+
+        :return: Строковое представление класса."""
         return self.name
 
-    def name(self) -> str:
-        return self.name
 
 class EquipGenerator(IGeneratable):
+
 
     def generate(self, name: str) -> Equip:
         pass

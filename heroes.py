@@ -1,5 +1,5 @@
 import config
-from equipment import Equip
+from equipment import Equip, EquipType
 from backpack import Backpack
 
 
@@ -69,10 +69,10 @@ class Hero:
         :param item: Объект предмета
         :return: None"""
 
-        if (needed_item := str(item)) in self.storage:
+        if (needed_item := str(item.item_type)) in self.storage:
             self.storage[needed_item].append(item)
         else:
-            self.storage.setdefault(needed_item, [item])
+            self.storage.setdefault(str(item.item_type), [item])
 
     def get_from_backpack(self, item: Equip) -> list[Equip]:
         """Метод изъятия предмета из рюкзака.
@@ -81,12 +81,15 @@ class Hero:
         :return: Список изъятых предметов"""
 
         taken_item = []
-        if (needed_item := str(item)) in self.storage:
-            taken_item.append(self.storage[needed_item].pop(self.storage[needed_item].index(item)))
+        for value in self.storage.values():
+            if (needed_item := item) in value:
+                taken_item.append(value[value.index(needed_item)])
+                value.remove(value[value.index(needed_item)])
+                break
+        if len(taken_item) == 1:
+            return taken_item
         else:
-            print(f"В рюкзаке нет предмета: {needed_item}.")
-
-        return taken_item
+            print(f'В рюкзаке нет {needed_item}')
 
     def open_backpack(self) -> None:
         """Метод просмотра содержимого рюкзака.
@@ -95,7 +98,7 @@ class Hero:
 
         print("Содержимое рюкзака:")
         for key, value in self.storage.items():
-            print(f"    {key}: {value[0]} x {len(value)}")
+            print(f"    {key}: {value}")
 
 
 class Knight(Hero):
