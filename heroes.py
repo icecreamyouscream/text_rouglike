@@ -70,9 +70,15 @@ class Hero:
         :return: None"""
 
         if (needed_item := str(item.item_type)) in self.storage:
-            self.storage[needed_item].append(item)
+            for piece in self.storage[needed_item]:
+                if item not in piece:
+                    self.storage[needed_item].append([item])
+                    break
+                else:
+                    piece.append(item)
+                    break
         else:
-            self.storage.setdefault(str(item.item_type), [item])
+            self.storage.setdefault(str(item.item_type), [[item]])
 
     def get_from_backpack(self, item: Equip) -> list[Equip]:
         """Метод изъятия предмета из рюкзака.
@@ -82,14 +88,15 @@ class Hero:
 
         taken_item = []
         for value in self.storage.values():
-            if (needed_item := item) in value:
-                taken_item.append(value[value.index(needed_item)])
-                value.remove(value[value.index(needed_item)])
-                break
+            for piece in value:
+                if (needed_item := item) in piece:
+                    taken_item.append(needed_item)
+                    piece.remove(needed_item)
+                    break
         if len(taken_item) == 1:
             return taken_item
         else:
-            print(f'В рюкзаке нет {needed_item}')
+            print(f'В рюкзаке нет {item}')
 
     def open_backpack(self) -> None:
         """Метод просмотра содержимого рюкзака.
@@ -98,7 +105,9 @@ class Hero:
 
         print("Содержимое рюкзака:")
         for key, value in self.storage.items():
-            print(f"    {key}: {value}")
+            print(f"    {key}:")
+            for piece in value:
+                print(f"        {piece[0]} * {len(piece)}")
 
 
 class Knight(Hero):
