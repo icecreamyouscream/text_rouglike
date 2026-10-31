@@ -71,16 +71,16 @@ class Hero:
 
         if (needed_item := str(item.item_type)) in self.storage:
             for piece in self.storage[needed_item]:
-                if item not in piece:
+                if item not in piece: # todo СОВЕТ код проще воспринимается, когда у тебя утверждение, а не отрицаие, если можно написать код без not , то лучше написать без нот, то есть в данной ситуации можно поменять иф и элс местами
                     self.storage[needed_item].append([item])
-                    break
+                    break # todo у тебя брейк в любом случае выполняется, подумай как можно сократить на одну строчку, чтобы смысл не потерялся
                 else:
                     piece.append(item)
                     break
         else:
-            self.storage.setdefault(str(item.item_type), [[item]])
+            self.storage.setdefault(str(item.item_type), [[item]]) #todo прелесть StrEnum в том что не нужно кастовать к стринге, у тебя уже стринга, как сторедж класса Storage , но унаследован от дикта
 
-    def get_from_backpack(self, item: Equip) -> list[Equip]:
+    def get_from_backpack(self, item: Equip) -> list[Equip]: # todo pycharm ругается, посмотри - либо измени выход, либо аннотацию выхода
         """Метод изъятия предмета из рюкзака.
 
         :param item: Объект предмета
@@ -93,7 +93,7 @@ class Hero:
                     taken_item.append(needed_item)
                     piece.remove(needed_item)
                     break
-        if len(taken_item) == 1:
+        if len(taken_item) == 1: #todo а если больше 1?
             return taken_item
         else:
             print(f'В рюкзаке нет {item}')
