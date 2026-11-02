@@ -10,11 +10,12 @@ class EquipType(StrEnum):
     ARMOR = "Броня"
     COLLECTIBLE = "Расходники"
 
+
 class Equip(ABC):
     """Абстрактный класс предметов."""
 
     @abstractmethod
-    def __init__(self, name: str, item_type: str) -> None:
+    def __init__(self, name: str, item_type: str) -> None: # todo item_type поменяй аннотацию, посмотри внимательно что у нас входит, мы это уже проходили, фактически да, это стринга, но если посмотреть выше
         """Метод инициализации класса.
 
         :param name: Наименование предмета.
@@ -43,12 +44,12 @@ class Armor(Equip):
 
 class Weapon(Equip):
     """Класс оружия"""
-    
+
     def __init__(self, name: str) -> None:
         """Метод инициализации класса.
         
         :param name: Наименование оружия"""
-        
+
         super().__init__(name=name, item_type=EquipType.WEAPON)
 
     def __repr__(self):
@@ -76,7 +77,7 @@ class Collectible(Equip):
 
 
 class EquipGenerator(IGeneratable):
+    #todo докстринга
 
-
-    def generate(self, name: str) -> Equip:
-        pass
+    def generate(self, name: str) -> Equip: #todo pycharm ругается, что сигнатура метода не совпадает с сигнатурой интерфейса
+        pass #todo дальше надо наполнить метод логикой, в зависимости от входящего типа у нас метод возвращает разный объект
