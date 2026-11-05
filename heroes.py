@@ -75,10 +75,10 @@ class Hero:
             else:
                 self.storage[needed_type].setdefault(item.name, [item])
         else:
-            self.storage.setdefault(needed_type, {})
+            self.storage.setdefault(needed_type, {}) # todo давай для Backpack сразу создадим небольшую структуру, мы заранее знаем какие у нас есть типы итемов, так что можем минимальную структуру с типами создать на этапе создания рюкзака
             self.storage[needed_type].setdefault(item.name, [item])
 
-    def get_from_backpack(self, item: Equip) -> Equip:
+    def get_from_backpack(self, item: Equip) -> Equip: # todo все еще не всегда возвращается Equip
         """Метод изъятия предмета из рюкзака.
 
         :param item: Объект предмета.
@@ -88,7 +88,7 @@ class Hero:
             if (needed_item := item.name) in self.storage[needed_type]:
                 taken_item = self.storage[needed_type][needed_item].pop(self.storage[needed_type][needed_item].index(item))
                 if len(self.storage[needed_type][needed_item]) < 1:
-                    removable = self.storage.pop(needed_type)
+                    removable = self.storage.pop(needed_type) # todo переменная не используется
                 return taken_item
             else:
                 print(f'\nВ рюкзаке нет предмета: {item}\n')
