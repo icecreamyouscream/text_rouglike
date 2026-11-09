@@ -1,9 +1,9 @@
-import heroes
-from equipment import Armor, Weapon, Collectible
+from entities import hero
+from entities.equipment import Armor, Weapon, Collectible
 
 
 if __name__ == "__main__":
-    some_knight = heroes.Knight("Dick")
+    some_knight = hero.Knight("Dick")
     print(some_knight)
     sword = Weapon("меч")
     chainmail = Armor("кольчуга")
