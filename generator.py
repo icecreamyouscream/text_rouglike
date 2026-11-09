@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class IGeneratable(ABC):
-    #todo докустрингу пропустил
+    """Абстрактный класс генератора сущностей."""
 
     @abstractmethod
-    def generate(self): # todo сигнатура
+    def generate(self, some_type) -> Any:
         pass
