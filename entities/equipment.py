@@ -15,7 +15,7 @@ class Equip(ABC):
     """Абстрактный класс предметов."""
 
     @abstractmethod
-    def __init__(self, name: str, item_type: str) -> None: # todo item_type поменяй аннотацию, посмотри внимательно что у нас входит, мы это уже проходили, фактически да, это стринга, но если посмотреть выше
+    def __init__(self, name: str, item_type: EquipType) -> None:
         """Метод инициализации класса.
 
         :param name: Наименование предмета.
@@ -77,7 +77,20 @@ class Collectible(Equip):
 
 
 class EquipGenerator(IGeneratable):
-    #todo докстринга
+    """Класс генератора предметов."""
 
-    def generate(self, name: str) -> Equip: #todo pycharm ругается, что сигнатура метода не совпадает с сигнатурой интерфейса
-        pass #todo дальше надо наполнить метод логикой, в зависимости от входящего типа у нас метод возвращает разный объект
+    def generate(self, equip_type: EquipType) -> Equip:
+        """Метод, генерирующий предметы на основе полученного типа предмета.
+
+        :param equip_type: Тип предмета.
+        :return: Предмет."""
+
+        match equip_type:
+            case "Оружие":
+                return Weapon("Меч")
+
+            case "Броня":
+                return Armor("Кольчуга")
+
+            case "Расходники":
+                return Collectible("Ключ")
