@@ -5,17 +5,17 @@
 
 ## Настройка окружения
 
-
+## Установка виртуального окружения Windows
 ```commandline
-# установка виртуального окружения Windows
-
 python -m venv venv
 .\venv\Scripts\activate
 ```
+## Установка Rich UI
+```commandline
+python -m pip install rich
+```
+## Установка зависимостей
 
 ```commandline
-# установка зависимостей
-
-pip install -r requirements.txt
+pip install -r requirements_dev.txt
 ```
-
